@@ -58,6 +58,8 @@ namespace MinecraftClient.ChatBots
 
         public override bool OnDisconnect(DisconnectReason reason, string message)
         {
+            bool ignore = Settings.AutoRelog_Ignore;
+            LogToConsole("AutoRelog ignore kickmessages.txt: " + ignore.ToString().ToLower());
             if (reason == DisconnectReason.UserLogout)
             {
                 if (Settings.DebugMessages)
@@ -71,18 +73,31 @@ namespace MinecraftClient.ChatBots
                 if (Settings.DebugMessages)
                     LogToConsole("Got disconnected with message: " + message);
 
-                foreach (string msg in dictionary)
+                if (ignore == true)
                 {
-                    if (comp.Contains(msg))
-                    {
-                        if (Settings.DebugMessages)
-                            LogToConsole("Message contains '" + msg + "'. Reconnecting.");
+                    LogToConsole("Relogging");
+                    LogToConsole("Waiting " + delay + " seconds before reconnecting...");
+                    System.Threading.Thread.Sleep(delay * 1000);
+                    McTcpClient.ReconnectionAttemptsLeft = attempts;
+                    ReconnectToTheServer();
+                    return true;
 
-                        LogToConsole("Waiting " + delay + " seconds before reconnecting...");
-                        System.Threading.Thread.Sleep(delay * 1000);
-                        McTcpClient.ReconnectionAttemptsLeft = attempts;
-                        ReconnectToTheServer();
-                        return true;
+                }
+                else
+                {
+                    foreach (string msg in dictionary)
+                    {
+                        if (comp.Contains(msg))
+                        {
+                            if (Settings.DebugMessages)
+                                LogToConsole("Message contains '" + msg + "'. Reconnecting.");
+
+                            LogToConsole("Waiting " + delay + " seconds before reconnecting...");
+                            System.Threading.Thread.Sleep(delay * 1000);
+                            McTcpClient.ReconnectionAttemptsLeft = attempts;
+                            ReconnectToTheServer();
+                            return true;
+                        }
                     }
                 }
 

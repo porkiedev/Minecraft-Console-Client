@@ -126,6 +126,7 @@ namespace MinecraftClient
 
         //AutoRelog Settings
         public static bool AutoRelog_Enabled = false;
+        public static bool AutoRelog_Ignore = true;
         public static int AutoRelog_Delay = 10;
         public static int AutoRelog_Retries = 3;
         public static string AutoRelog_KickMessagesFile = "kickmessages.txt";
@@ -349,6 +350,7 @@ namespace MinecraftClient
                                             switch (argName.ToLower())
                                             {
                                                 case "enabled": AutoRelog_Enabled = str2bool(argValue); break;
+                                                case "ignorereason": AutoRelog_Ignore = str2bool(argValue); break;
                                                 case "delay": AutoRelog_Delay = str2int(argValue); break;
                                                 case "retries": AutoRelog_Retries = str2int(argValue); break;
                                                 case "kickmessagesfile": AutoRelog_KickMessagesFile = argValue; break;
@@ -609,6 +611,7 @@ namespace MinecraftClient
                 + "\r\n"
                 + "[AutoRelog]\r\n"
                 + "enabled=false\r\n"
+                + "ignorereason=true\r\n"
                 + "delay=10\r\n"
                 + "retries=3 #-1 = unlimited\r\n"
                 + "kickmessagesfile=kickmessages.txt\r\n"

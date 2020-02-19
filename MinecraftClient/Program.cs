@@ -42,6 +42,7 @@ namespace MinecraftClient
         static void Main(string[] args)
         {
             Console.WriteLine("Console Client for MC {0} to {1} - v{2} - By ORelio & Contributors", MCLowestVersion, MCHighestVersion, Version);
+            Console.WriteLine("Modified by PorkieDev");
 
             //Build information to facilitate processing of bug reports
             if (BuildInfo != null)
@@ -248,7 +249,7 @@ namespace MinecraftClient
                         return;
                     }
                 }
-
+                
                 if (protocolversion != 0)
                 {
                     try
