@@ -1,6 +1,17 @@
 Minecraft Console Client
 ========================
 
+--
+PorkieDev's edit
+
+I love this and I plan to modify more, but here's what I've done so far.
+P.S. I'm new to VS and C# so forgive my bad edits if I made any mistakes.
+
+-Added a configuration option to relog no matter the reason for the kick.
+
+Thanks and credit to ORelio for making this amazing application!
+--
+
 [![Appveyor build status](https://ci.appveyor.com/api/projects/status/github/ORelio/Minecraft-Console-Client?branch=Indev)](https://ci.appveyor.com/project/ORelio/minecraft-console-client)
 
 Minecraft Console Client(MCC) is a lightweight app allowing you to connect to any Minecraft server,
